@@ -1,0 +1,61 @@
+﻿@model KLA_Calculator.Models.Calculator
+
+@{
+    ViewBag.Title = "KLA Calculator";
+}
+
+<h2>KLA Calculator</h2>
+
+<div id="instructions">
+  <h4>How to Use</h4>
+  <p>
+    Type a formula in the box below, or enter it using the calculator keys.
+    To use special characters (such as % or parentheses), type them on your keyboard.
+  </p>
+</div>
+
+<div id="calculator">
+  @using (Html.BeginForm("Index", "Calculator"))
+  {
+    <div id="calculator-screen">
+      @Html.TextBoxFor(m => m.Answer, new { @readonly = "readonly" })
+      <br />
+      @Html.EditorFor(m => m.Formula)
+      @Html.ValidationMessageFor(m => m.Formula)
+
+      @if (!Model.ValidFormula)
+      {
+      <span>The formula is not valid.</span>
+      }
+    </div>
+    <div id="calculator-body">
+      <button type="button">7</button>
+      <button type="button">8</button>
+      <button type="button">9</button>
+      <button type="button" class="operator">÷</button>
+      <br />
+      <button type="button">4</button>
+      <button type="button">5</button>
+      <button type="button">6</button>
+      <button type="button" class="operator">×</button>
+      <br />
+      <button type="button">1</button>
+      <button type="button">2</button>
+      <button type="button">3</button>
+      <button type="button" class="operator">-</button>
+      <br />
+      <button type="button" class="double">0</button>
+      <button type="button">.</button>
+      <button type="button" class="operator">+</button>
+      <br />
+      <button type="button" class="action">CE</button>
+      <button type="button" class="action">AC</button>
+      <button type="submit" class="double equals">=</button>
+    </div>
+  }
+</div>
+
+@section Scripts
+{
+  @Scripts.Render("~/bundles/custom")
+}
