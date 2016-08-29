@@ -21,11 +21,13 @@
       @Html.TextBoxFor(m => m.Answer, new { @readonly = "readonly" })
       <br />
       @Html.EditorFor(m => m.Formula)
-      @Html.ValidationMessageFor(m => m.Formula)
+      <br />
+      @Html.ValidationMessageFor(m => m.Formula, null, new { @class = "text-danger" })
 
       @if (!Model.ValidFormula)
       {
-      <span>The formula is not valid.</span>
+        <br />
+        <span class="text-danger">The formula is not valid.</span>
       }
     </div>
     <div id="calculator-body">

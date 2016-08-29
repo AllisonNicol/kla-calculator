@@ -8,16 +8,26 @@ using NCalc;
 
 namespace KLA_Calculator.Models
 {
+  /// <summary>
+  /// Holds and processes calculator data.
+  /// </summary>
   public class Calculator
   {
-    [Required()]
-    [RegularExpression("^[0-9.()]+[0-9.+*\\/×÷%() -]*$", ErrorMessage = "Formula must start with a number/decimal and can only include the numbers 0-9 or the symbols () . + - * × / ÷ %")]
+    /// <summary>
+    /// Gets or sets the formula to be evaluated.
+    /// </summary>
+    [MaxLength(28, ErrorMessage = "A maximum of 28 characters can be entered")]
+    [Required]
+    [RegularExpression("^[0-9.()]+[0-9.+*\\/×÷%() -]*$", ErrorMessage = "Formula must start with a number or decimal and can only include 0-9 or the symbols () . + - * × / ÷ %")]
     public string Formula
     {
       get;
       set;
     }
 
+    /// <summary>
+    /// Gets or sets the answer to be displayed to the user.
+    /// </summary>
     [ReadOnly(true)]
     public string Answer
     {
@@ -25,6 +35,9 @@ namespace KLA_Calculator.Models
       set;
     }
 
+    /// <summary>
+    /// Gets or sets a value indicating whether the formula is valid.
+    /// </summary>
     public bool ValidFormula
     {
       get;
@@ -39,6 +52,9 @@ namespace KLA_Calculator.Models
       this.ValidFormula = true;
     }
 
+    /// <summary>
+    /// Evaluates the current formula.
+    /// </summary>
     public void CalculateFormula()
     {
       // replace multiplication and division signs with the versions NCalc likes

@@ -7,22 +7,32 @@ using KLA_Calculator.Models;
 
 namespace KLA_Calculator.Controllers
 {
-    public class CalculatorController : Controller
+  /// <summary>
+  /// Main controller for calculator application.
+  /// </summary>
+  public class CalculatorController : Controller
+  {
+    /// <summary>
+    /// GET action for calculator--used when page is initially loaded.
+    /// </summary>
+    /// <returns>Calculator view</returns>
+    public ActionResult Index()
     {
-        // GET: Calculator
-        public ActionResult Index()
-        {
-          Calculator calculator = new Calculator();
-          return View(calculator);
-        }
-
-        // POST: Calculator
-        [HttpPost]
-        public ActionResult Index(Calculator calculator)
-        {
-          calculator.CalculateFormula();
-
-          return View(calculator);
-        }
+      Calculator calculator = new Calculator();
+      return this.View(calculator);
     }
+
+    /// <summary>
+    /// POST action for calculator--used when submitting a formula for evaluation.
+    /// </summary>
+    /// <param name="calculator">Data for calculator</param>
+    /// <returns>Calculator view</returns>
+    [HttpPost]
+    public ActionResult Index(Calculator calculator)
+    {
+      calculator.CalculateFormula();
+
+      return this.View(calculator);
+    }
+  }
 }
